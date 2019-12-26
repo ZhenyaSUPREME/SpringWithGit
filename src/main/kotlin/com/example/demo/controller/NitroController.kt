@@ -13,6 +13,11 @@ class NitroController(var nitroRepository: NitroRepository){
     fun getAll(): Flux<Nitro>{
         return nitroRepository.findAll()
     }
+        @GetMapping("/{id}")
+        fun getOneId(@PathVariable id:String):Mono<Nitro>{
+            return nitroRepository.findById(id)
+        }
+
     @PostMapping
     fun createOneList(@RequestBody nitro: Nitro): Mono<Nitro> {
         return nitroRepository.save(nitro)
